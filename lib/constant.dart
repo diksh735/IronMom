@@ -35,7 +35,8 @@ const MaterialColor kPrimaryWhite = const MaterialColor(
 const kPrimaryDark = Color(0xffC4B6B8);
 const kBlack = Color(0xff2C292D);
 const kDarkRed = Color(0xff63080B);
-const kGray = Color(0xff7A8596);
+const kGrayDark = Color(0xff7A8596);
+const kGray = Color(0xffB5B5B5);
 
 class DeviceSize {
   double height;
