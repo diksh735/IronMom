@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 const MaterialColor kPrimaryRed = const MaterialColor(
-  0xff9C3637,
+  0xffB52238,
   const <int, Color>{
-    50: const Color(0xff9C3637),
-    100: const Color(0xff9C3637),
-    200: const Color(0xff9C3637),
-    300: const Color(0xff9C3637),
-    400: const Color(0xff9C3637),
-    500: const Color(0xff9C3637),
-    600: const Color(0xff9C3637),
-    700: const Color(0xff9C3637),
-    800: const Color(0xff9C3637),
-    900: const Color(0xff9C3637),
+    50: const Color(0xffB52238),
+    100: const Color(0xffB52238),
+    200: const Color(0xffB52238),
+    300: const Color(0xffB52238),
+    400: const Color(0xffB52238),
+    500: const Color(0xffB52238),
+    600: const Color(0xffB52238),
+    700: const Color(0xffB52238),
+    800: const Color(0xffB52238),
+    900: const Color(0xffB52238),
   },
 );
 

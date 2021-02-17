@@ -1,8 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iron_mom/Widgets/modal_bottom_sheet.dart';
 import 'package:iron_mom/constant.dart';
+import 'package:iron_mom/helper/reminders.dart';
+import 'package:iron_mom/model/reminder_model.dart';
 import 'package:iron_mom/screens/progress.dart';
 import 'faq.dart';
 import 'iron_tracker.dart';
+import 'package:iron_mom/Widgets/reminder_card.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class Dashboard extends StatefulWidget {
   static const routeName = '/dashboard';
@@ -11,7 +17,14 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  List<ReminderModel> reminders = new List<ReminderModel>();
+
   @override
+  void initState() {
+    super.initState();
+    reminders = getReminders();
+  }
+
   Widget build(BuildContext context) {
     final size = DeviceSize(context: context);
     return Scaffold(
@@ -48,6 +61,7 @@ class _DashboardState extends State<Dashboard> {
       ),
       backgroundColor: Color(0xffF4F4F4),
       body: Container(
+        padding: EdgeInsets.only(bottom: 10),
         child: Column(
           children: [
             SizedBox(
@@ -97,17 +111,191 @@ class _DashboardState extends State<Dashboard> {
               height: 10,
             ),
             Container(
+              margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              width: size.width / 0.5,
+              height: size.height / 6,
+              decoration: BoxDecoration(
+                color: kPrimaryWhite,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Take Your Iron Pill Daily',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height / 130,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
+                            size: 20,
+                          ),
+                          onPressed: null),
+                      Image.asset(
+                        'images/pill.png',
+                        height: size.height / 11,
+                        width: size.width / 7,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Iron Pill',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text('Take 1 with juice'),
+                        ],
+                      ),
+                      Text('08:30 AM'),
+                      IconButton(
+                          icon: Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 20,
+                          ),
+                          onPressed: null),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              padding: EdgeInsets.fromLTRB(30, 20, 30, 15),
+              width: size.width / 0.5,
+              height: size.height / 7,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  // Where the linear gradient begins and ends
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  // Add one stop for each color. Stops should increase from 0 to 1
+                  stops: [0.1, 0.9],
+                  colors: [
+                    // Colors are easy thanks to Flutter's Colors class.
+                    Color(0xff9A1B2D),
+                    Color(0xffB52238),
+                  ],
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Enter your',
+                        style: TextStyle(
+                            color: kPrimaryWhite,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17),
+                      ),
+                      Text(
+                        'Hemoglobin & Ferritin',
+                        style: TextStyle(
+                            color: kPrimaryWhite,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17),
+                      ),
+                      Text(
+                        'lab results',
+                        style: TextStyle(
+                            color: kPrimaryWhite,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17),
+                      ),
+                    ],
+                  ),
+                  ClipOval(
+                    child: Material(
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.add,
+                          color: kPrimaryRed,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                            builder: (context) => BSheet(),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
                 margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
                 padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                 width: size.width / 0.5,
-                height: size.height / 6,
                 decoration: BoxDecoration(
                   color: kPrimaryWhite,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: Column(
-                  children: [],
-                ))
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Reminder',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 2, 0, 2),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: reminders.length,
+                          itemBuilder: (context, index) {
+                            return ReminderCard(
+                              date: reminders[index].date,
+                              month: reminders[index].month.toUpperCase(),
+                              message: reminders[index].message,
+                            );
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
