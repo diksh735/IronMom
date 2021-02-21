@@ -9,7 +9,7 @@ List<ReminderModel> getReminders() {
   reminderModel.month = DateFormat.MMM().format(DateTime.now());
   reminderModel.date = DateFormat.d().format(DateTime.now());
   reminderModel.message =
-      'Ask your health care provider for hemoglobin and Ferritin levels';
+      'Ask your healthcare provider for your Hemoglobin and Ferritin levels';
   reminder.add(reminderModel);
 
   reminderModel = new ReminderModel();

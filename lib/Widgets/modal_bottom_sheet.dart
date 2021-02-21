@@ -136,6 +136,7 @@ class _BSheetState extends State<BSheet> {
                 children: [
                   Container(
                     child: TextField(
+                      enabled: false,
                       decoration: InputDecoration(
                         hintText: 'Enter Date',
                         border: InputBorder.none,
